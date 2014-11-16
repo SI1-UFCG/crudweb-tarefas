@@ -1,0 +1,15 @@
+@(disciplinas: List[Disciplina])
+
+@main("Minhas tarefas") {
+
+    <h3>Disciplinas Cadastradas</h3>
+    @if(disciplinas.isEmpty){
+        Nenhuma disciplina cadastrada
+    }else {
+        <ul>
+            @for(disciplina <- disciplinas){
+                <li>@disciplina.getNome()</li>
+            }
+        </ul>
+    }
+}
