@@ -1,6 +1,7 @@
 import static org.fest.assertions.Assertions.*;
 
 import models.Disciplina;
+import models.Tarefa;
 import models.dao.GenericDAO;
 import org.junit.After;
 import org.junit.Before;
@@ -29,7 +30,7 @@ public class MinhasTarefasTest {
     }
 
     @Test
-    public void deveCadastrarDisciplina() throws Exception {
+    public void deveSalvarDisciplinaNoBD() throws Exception {
         Disciplina disciplina = new Disciplina("SI1", "Sistemas de informação 1");
         dao.persist(disciplina);
 
@@ -38,6 +39,19 @@ public class MinhasTarefasTest {
         assertThat(disciplinas.get(0).getCodigo()).isEqualTo("SI1");
     }
 
+    @Test
+    public void deveSalvarTarefaNoBD() throws Exception {
+        Disciplina disciplina = new Disciplina("SI1", "Sistemas de informação 1");
+        dao.persist(disciplina);
+
+        Tarefa tarefa = new Tarefa("Lab 2", disciplina);
+
+        dao.persist(tarefa);
+
+        List<Tarefa> disciplinas = dao.findAllByClassName(Tarefa.class.getName());
+        assertThat(disciplinas.size()).isEqualTo(1);
+        assertThat(disciplinas.get(0).getNome()).isEqualTo("Lab 2");
+    }
 
     public EntityManager em;
 

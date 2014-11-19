@@ -8,8 +8,15 @@
     }else {
         <ul>
             @for(disciplina <- disciplinas){
-                <li>@disciplina.getNome()</li>
+                <li>@disciplina.getCodigo() "-" @disciplina.getNome()</li>
             }
         </ul>
     }
+
+    <h4>Criar disciplina</h4>
+    <form method="post" action="/disciplina"/>
+        <input name="codigo" type="text" placeholder="código" required/><br>
+        <input name="nome" type="text" placeholder="nome" required/><br>
+        <input type="submit" value="criar"/>
+    </form>
 }
